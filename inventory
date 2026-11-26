@@ -2,11 +2,33 @@
 192.168.1.69
 
 [node2]
-node2.example.com
-
-[node3]
-node3.example.com
+192.168.1.66
 
 [allnodes:children]
 node1
 node2
+
+#defined ungrouped hosts
+192.168.1.11
+192.168.1.12
+abc.example.com
+
+[webserver]
+web1.example.com
+web2.example.com
+192.168.1.40
+
+#simplifying host specifications with ranges
+[dbserver]
+db[1:4].example.com
+192.168.1.[41:50]
+
+#Defining Nested Groups
+[allservers:children]
+webserver
+dbserver
+
+
+##ansible-navigator inventory -i inventory -m stdout --host web1.example.com
+##ansible-navigator inventory -i inventory -m stdout --list
+##ansible-navigator inventory -i inventory -m stdout --graph webserver
